@@ -22,10 +22,16 @@ function genericReducer<T extends IEntity>(items: T[] = [], action: PayloadActio
       return [...items, payload];
 
     case TOGGLE:
-      const element = items.find(x => x.id == payload.id);
-      if (element) {
-        element.isComplete = !element.isComplete;
-        return [...items];
+      const idx = items.findIndex(x => x.id == payload.id);
+      if (idx !== -1) {
+        return [
+            ...items.slice(0, idx),
+            {
+               ...items[idx],
+               isComplete: !items[idx].isComplete,
+            },
+            ...items.slice(idx +1),
+        ];
       } else {
         return items;
       }

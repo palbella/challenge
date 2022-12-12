@@ -9,7 +9,7 @@ import combineReducers from '../reducers/indexReducer';
  * @param store as requirement "The hook should accept a Redux store as an argument"
  * @returns returns an object with data and a function for each action on the reducer
  */
-const useCustomDispatch = <T extends IEntity>(store: any) => {
+const useTasks = <T extends IEntity>(store: any) => {
 
   type AppDispatch = typeof store.dispatch;
   const useAppDispatch: () => AppDispatch = useDispatch
@@ -43,4 +43,4 @@ const useCustomDispatch = <T extends IEntity>(store: any) => {
   return { data, addItem, removeItem, toggleItem };
 };
 
-export default useCustomDispatch;
+export default useTasks;

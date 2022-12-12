@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import useCustomDispatch from './hooks/useCustomDispatch';
+import useTasks from './hooks/useTasks';
 import store from './store';
 import { IToDo, ToDoModel } from './models/ToDo';
 import { Provider } from 'react-redux';
@@ -20,7 +20,7 @@ describe('Testing Custom Hook with ToDo entity', () => {
   it('Hook must initialize as array empty', () => {
 
     const { result } = renderHook(() =>
-      useCustomDispatch<IToDo>(store), { wrapper });
+    useTasks<IToDo>(store), { wrapper });
 
 
     const expected: IToDo[] = [];
@@ -34,7 +34,7 @@ describe('Testing Custom Hook with ToDo entity', () => {
   it('Hook must add new ToDo', () => {
 
     const { result } = renderHook(() =>
-      useCustomDispatch<IToDo>(store), { wrapper });
+    useTasks<IToDo>(store), { wrapper });
 
     act(() => {
       const newItem = new ToDoModel();
@@ -55,7 +55,7 @@ describe('Testing Custom Hook with ToDo entity', () => {
   it('Task B must be complete, task A not change', () => {
 
     const { result } = renderHook(() =>
-      useCustomDispatch<IToDo>(store), { wrapper });
+    useTasks<IToDo>(store), { wrapper });
 
     act(() => {
       const newItem = new ToDoModel();
@@ -78,7 +78,7 @@ describe('Testing Custom Hook with ToDo entity', () => {
   it('Task A must be removed', () => {
 
     const { result } = renderHook(() =>
-      useCustomDispatch<IToDo>(store), { wrapper });
+    useTasks<IToDo>(store), { wrapper });
 
     act(() => {
       const item = new ToDoModel();
@@ -102,7 +102,7 @@ describe('Testing Custom Hook with other entity', () => {
   it('Hook must add new entity different of ToDo', () => {
 
     const { result } = renderHook(() =>
-      useCustomDispatch<ITask>(store), { wrapper });
+    useTasks<ITask>(store), { wrapper });
 
     act(() => {
       const newItem: ITask = {
@@ -122,7 +122,7 @@ describe('Testing Custom Hook with other entity', () => {
   it('Task C must be complete, task B should still be complete', () => {
 
     const { result } = renderHook(() =>
-      useCustomDispatch<ITask>(store), { wrapper });
+    useTasks<ITask>(store), { wrapper });
 
     act(() => {
       const newItem: ITask = {
@@ -143,7 +143,7 @@ describe('Testing Custom Hook with other entity', () => {
   it('Task C must be removed', () => {
 
     const { result } = renderHook(() =>
-      useCustomDispatch<ITask>(store), { wrapper });
+    useTasks<ITask>(store), { wrapper });
 
     act(() => {
       const item = new TaskModel();

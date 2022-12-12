@@ -1,4 +1,4 @@
-import useCustomDispatch from "../hooks/useCustomDispatch";
+import useTasks from "../hooks/useTasks";
 import { IToDo } from "../models/ToDo";
 import store from "../store";
 
@@ -8,7 +8,7 @@ import store from "../store";
  */
 function List() {
 
-  const { data, toggleItem } = useCustomDispatch<IToDo>(store);
+  const { data, toggleItem } = useTasks<IToDo>(store);
 
   function toogleItem(item: IToDo) {
     toggleItem(item)

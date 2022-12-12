@@ -1,5 +1,5 @@
 import { makeid } from "../helpers/Helper";
-import useCustomDispatch from "../hooks/useCustomDispatch";
+import useTasks from "../hooks/useTasks";
 import { IToDo, ToDoModel } from "../models/ToDo";
 import store from "../store";
 
@@ -9,7 +9,7 @@ import store from "../store";
  */
 function AddItem() {
 
-  const { data, addItem, removeItem } = useCustomDispatch<IToDo>(store);
+  const { data, addItem, removeItem } = useTasks<IToDo>(store);
 
   function addNewItem() {
     const newItem = new ToDoModel();
